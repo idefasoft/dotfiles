@@ -2,17 +2,17 @@
   "layer": "top",
   "position": "top",
   "spacing": 2,
-  "modules-left":[
+  "modules-left": [
     "cpu",
     "memory",
     "pulseaudio",
     "niri/workspaces",
     "tray"
   ],
-  "modules-center":[
+  "modules-center": [
     "niri/window"
   ],
-  "modules-right":[
+  "modules-right": [
     "mpris",
     "mpd",
     "network",
@@ -29,8 +29,8 @@
     "format": " {used:0.1f}G",
     "interval": 5,
     "states": {
-      "warning":75,
-      "critical":90
+      "warning": 75,
+      "critical": 90
     }
   },
   "pulseaudio": {
@@ -47,7 +47,7 @@
     "spacing": 10
   },
   "niri/window": {
-    "separate-outputs":true,
+    "separate-outputs": true,
     "max-length": 50
   },
   "mpris": {
@@ -65,26 +65,26 @@
       "paused": "▶"
     }
   },
-  "mpd": {
-    "format": "{stateIcon} {artist} - {title} ({album}) ",
-    "format-disconnected": "",
-    "format-stopped": "",
-    "tooltip-format": "[{elapsedTime:%M:%S}/{totalTime:%M:%S}] {artist} - {title} ({album})",
-    "interval": 10,
-    "max-length": 40,
-    "on-click": "rmpc togglepause",
-    "on-click-right": "rmpc next",
-    "on-click-middle": "rmpc prev",
-    "state-icons": {
-      "paused": "",
-      "playing": ""
-    }
-  },
+  // "mpd": {
+  //   "format": "{stateIcon} {artist} - {title} ({album}) ",
+  //   "format-disconnected": "",
+  //   "format-stopped": "",
+  //   "tooltip-format": "[{elapsedTime:%M:%S}/{totalTime:%M:%S}] {artist} - {title} ({album})",
+  //   "interval": 10,
+  //   "max-length": 40,
+  //   "on-click": "rmpc togglepause",
+  //   "on-click-right": "rmpc next",
+  //   "on-click-middle": "rmpc prev",
+  //   "state-icons": {
+  //     "paused": "",
+  //     "playing": ""
+  //   }
+  // },
   "network": {
     "format-wifi": "",
     "format-ethernet": "",
     "format-disconnected": "󰖪",
-    "format-alt": "<span foreground='#05c6ed'> {bandwidthDownOctets}</span> | <span foreground='#e68b0b'> {bandwidthUpOctets}</span>",
+    "format-alt": "<span foreground='#05c6ed'> {bandwidthDownOctets}</span> | <span foreground='#e68b0b'> {bandwidthUpOctets}</span>",
     "tooltip": true,
     "tooltip-format": "Interface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>",
     "tooltip-format-disconnected": "Disconnected",
@@ -93,13 +93,7 @@
   },
   "battery": {
     "format": "{icon} {capacity}%",
-    "format-icons":[
-      "",
-      "",
-      "",
-      "",
-      ""
-    ]
+    "format-icons": ["", "", "", "", ""]
   },
   "clock": {
     "format-alt": "{:%a, %d. %b  %H:%M}",
@@ -110,6 +104,7 @@
     "modules": [
       "custom/lock",
       "custom/reboot",
+      "custom/sleep",
       "custom/shutdown",
       "custom/wallpaper"
     ],
@@ -132,6 +127,11 @@
     "format": "",
     "tooltip": false,
     "on-double-click": "shutdown now"
+  },
+  "custom/sleep": {
+    "format": "󰤄",
+    "tooltip": false,
+    "on-double-click": "systemctl suspend"
   },
   "custom/reboot": {
     "format": "󰜉",

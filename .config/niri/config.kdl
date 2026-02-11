@@ -24,16 +24,17 @@ input {
 // Settings that influence how windows are positioned and sized.
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
-    gaps 6
+    gaps 4
     center-focused-column "never"
     default-column-width { proportion 0.5; }
+    // empty-workspace-above-first
 
     preset-column-widths {
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
     }
-    preset-window-heights { 
+    preset-window-heights {
         proportion 0.5
         proportion 1.0
     }
@@ -41,15 +42,16 @@ layout {
         off
     }
     border {
-        width 3
-        active-gradient from="#0077FF" to="#00CFFF" angle=135
-        inactive-gradient from="#4B5C86" to="#2C3E50" angle=135
+        on
+        width 1
+        active-gradient from="#268bd2" to="#2aa198" angle=135
+        inactive-color "#002b36"
         urgent-color "#9b0000"
     }
     shadow {
-        on
+        off
         softness 5
-        spread 0 
+        spread 0
         offset x=10 y=10
         color "#0009"
     }
@@ -58,7 +60,7 @@ layout {
 // Window rules let you adjust behavior for individual windows.
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
 window-rule {
-    geometry-corner-radius 10
+    geometry-corner-radius 8
     clip-to-geometry true
 }
 window-rule {
@@ -67,7 +69,7 @@ window-rule {
 }
 window-rule {
     match is-active=true
-    opacity 0.99
+    opacity 0.98
 }
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
@@ -82,6 +84,12 @@ window-rule {
     open-maximized true
     block-out-from "screencast"
 }
+window-rule {
+    match app-id="sysinfo"
+    open-floating true
+    default-column-width { fixed 720; }
+    default-window-height { fixed 370; }
+}
 
 // Settings that influence how keybindings work.
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Key-Bindings
@@ -91,9 +99,14 @@ binds {
     Mod+D       { spawn "fuzzel"; }
     Mod+B       { spawn "firefox"; }
     Mod+Shift+B { spawn "firefox" "--private-window"; }
-    Super+Alt+L { spawn "swaylock"; }
+    Mod+Shift+L { spawn "swaylock"; }
     Mod+E       { spawn "thunar"; }
+    Mod+N       { spawn "mousepad"; }
+    Mod+Z       { spawn "zeditor"; }
 
+    Mod+W {
+        spawn "foot" "--app-id" "sysinfo" "/home/idefa/.config/scripts/dashboard.sh"
+    }
     // System
     XF86AudioRaiseVolume allow-when-locked=true  { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
     XF86AudioLowerVolume allow-when-locked=true  { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
@@ -134,7 +147,7 @@ binds {
     Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
     Mod+V                          { toggle-window-floating; }
     Mod+Shift+V                    { switch-focus-between-floating-and-tiling; }
-    Mod+W                          { toggle-column-tabbed-display; }
+    // Mod+W                          { toggle-column-tabbed-display; }
     Mod+Colon                      { consume-or-expel-window-left; }
     Mod+Exclam                     { consume-or-expel-window-right; }
     Mod+Comma                      { consume-window-into-column; }
@@ -184,7 +197,7 @@ binds {
     Alt+Print { screenshot-window; }
 
     Ctrl+Alt+Delete { quit; }
-    Mod+Shift+P { power-off-monitors; }
+    Mod+Alt+P { power-off-monitors; }
 }
 
 // Animation settings.
@@ -194,12 +207,13 @@ animations {
 
 // Other settings that don't fit into other categories.
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous
-spawn-at-startup "waybar"
-spawn-at-startup "mako"
+// spawn-at-startup "mako"
+// spawn-at-startup "waybar"
 spawn-at-startup "swww-daemon"
 spawn-at-startup "foot" "--server"
-spawn-at-startup "swayidle" "-w" "timeout" "601" "swaylock -f" "before-sleep" "swaylock -f"
+spawn-at-startup "swayidle" "-w" "timeout" "601" "niri msg action power-off-monitors" "timeout" "600" "swaylock -f" "before-sleep" "swaylock -f"
 spawn-at-startup "systemd-run" "--user" "--on-calendar=*:0/10" "python" "/home/idefa/.config/scripts/wallpaper.py"
+spawn-at-startup "python" "/home/idefa/.config/scripts/tracker.py"
 
 prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
@@ -215,7 +229,7 @@ overview {
 }
 environment {
     TERMINAL "foot"
-    EDITOR "nano"
+    EDITOR "micro"
     DISPLAY ":0"
     ELECTRON_OZONE_PLATFORM_HINT "wayland"
 }

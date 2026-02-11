@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<submenu />
+	<unique-id>1751130873742907-1</unique-id>
+	<command>footclient -D %f</command>
+	<description>Opens the terminal in the current folder</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<startup-notify />
+	<directories />
+</action>
+<action>
+	<icon>zed</icon>
+	<name>Open with Zed</name>
+	<submenu />
+	<unique-id>1770831250055329-1</unique-id>
+	<command>zeditor %F</command>
+	<description>Open selected file or directory in Zed</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories />
+	<other-files />
+	<text-files />
+</action>
+</actions>

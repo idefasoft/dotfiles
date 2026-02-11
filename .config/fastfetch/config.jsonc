@@ -33,18 +33,14 @@
             "key": "├─ Memory  "
         },
         {
-            "type": "battery",
-            "key": "├─ Battery "
+            "type": "disk",
+            "key": "├─󰉉 Disk    ",
+            "format": "{size-used} / {size-total} ({size-percentage})"
         },
         {
             "type": "display",
-            "key": "├─󰌢 Display ",
+            "key": "╰─󰌢 Display ",
             "compactType": "original-with-refresh-rate"
-        },
-        {
-            "type": "disk",
-            "key": "╰─󰉉 Disk    ",
-            "format": "{size-used} / {size-total} ({size-percentage}%)"
         },
         "break",
         {

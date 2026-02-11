@@ -28,6 +28,7 @@ window#waybar.empty #window {
 #clock,
 #custom-lock,
 #custom-shutdown,
+#custom-sleep,
 #custom-reboot,
 #custom-wallpaper
  {
